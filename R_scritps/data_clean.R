@@ -12,26 +12,26 @@ library(ntbox)
 s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/Srubricaulis_gbif_speciesLink.csv", sep = ",", dec = ".")
 
 
-predictors_list <- list.files("./dados/RAW_Present_1970_200_version_2.1/", full.names = T, pattern = ".tif")
+predictors_list <- list.files("/home/taina/Documentos/Worldclim/RAW_current_21v_10km/wc2.1_5m_bio/", full.names = T, pattern = ".tif")
 
-predictors <- stack()
+predictors <- stack(predictors_list)
 
-sdmdata_s_brasiliense <- setup_sdmdata(species_name = species[1],
-                             occurrences = occs,
-                             predictors = example_vars,
-                             models_dir = test_folder,
+sdmdata_s_brasiliense <- setup_sdmdata(species_name = unique(s_brasiliensi[2]),
+                             occurrences = s_brasiliensi[3:4],
+                             lon = "long",
+                             lat = "lat",
+                             predictors = predictors,
+                             models_dir = "data_clean",
                              partition_type = "crossvalidation",
-                             cv_partitions = 5,
+                             cv_partitions = 1,
                              cv_n = 1,
                              seed = 512,
                              buffer_type = "mean",
                              png_sdmdata = TRUE,
-                             n_back = 500,
-                             clean_dupl = FALSE,
-                             clean_uni = FALSE,
-                             clean_nas = FALSE,
-                             geo_filt = FALSE,
-                             geo_filt_dist = 10,
-                             select_variables = TRUE,
+                             n_back = 1,
+                             clean_dupl = T,
+                             clean_uni = T,
+                             clean_nas = T,
+                             select_variables = F,
                              sample_proportion = 0.5,
                              cutoff = 0.7)
