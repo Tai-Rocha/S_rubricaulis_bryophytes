@@ -10,6 +10,7 @@ library(ntbox)
 ###### Read 
 
 s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/inputs_ntbox/spLink_gbif_ntbox.csv", sep = "\t", dec = ".")
+S_brasilensis_2 <- read.csv (__________________)
 
 #### data clean via "clean_dup" of ntbox
 
