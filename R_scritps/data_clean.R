@@ -9,9 +9,17 @@ library(ntbox)
 
 ###### Read 
 
-s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/Srubricaulis_gbif_speciesLink.csv", sep = ",", dec = ".")
+s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/inputs_ntbox/spLink_gbif_ntbox.csv", sep = "\t", dec = ".")
+
+#### data clean via "clean_dup" of ntbox
+
+s_rubricaulis_data_clean <- clean_dup(s_brasiliensi, longitude= "longitude", latitude = "latitude", threshold = 0.1)
 
 
+write.csv(s_rubricaulis_data_clean, "./dados/Syzygiella_rubricaulis/records/data_clean/ntbox/s_rubricaulis_clean.csv", sep = "\t", dec = .)
+
+
+### data clean via setupd_sdmdata of modleR
 predictors_list <- list.files("/home/taina/Documentos/Worldclim/RAW_current_21v_10km/wc2.1_5m_bio/", full.names = T, pattern = ".tif")
 
 predictors <- stack(predictors_list)
