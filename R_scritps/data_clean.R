@@ -7,10 +7,11 @@ library(raster)
 library(modleR)
 library(ntbox)
 #######
+
 ###### Read 
 
 s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/inputs_ntbox/spLink_gbif_ntbox.csv", sep = "\t", dec = ".")
-S_brasilensis_2 <- read.csv (__________________)
+#S_brasilensis_2 <- read.csv (__________________)
 
 #### data clean via "clean_dup" of ntbox
 
@@ -44,3 +45,4 @@ sdmdata_s_brasiliense <- setup_sdmdata(species_name = unique(s_brasiliensi[2]),
                              select_variables = F,
                              sample_proportion = 0.5,
                              cutoff = 0.7)
+
