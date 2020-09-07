@@ -14,7 +14,7 @@ library(erer)
 
 ## Read and Load data after clean (table of lat long)
 
-s_rubricaulis <- read.csv("./dados/Syzygiella_rubricaulis/records/data_clean/ntbox/s_rubricaulis_clean.csv", sep = ",", dec = ".")
+s_rubricaulis <- read.csv("./dados/Syzygiella_rubricaulis/records/data_clean/ntbox/s_rubricaulis_map_k_means.csv", sep = ",", dec = ".")
 
 #rm(s_rubricaulis)
 
