@@ -1,4 +1,7 @@
-
+#######################
+## Cluster analysis
+## Author: Tainá Rocha
+########################
 
 
 #### Library
