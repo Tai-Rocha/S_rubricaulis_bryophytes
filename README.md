@@ -1,2 +1,2 @@
 ##### 
-Thiseviromental analysis for *S. rubricalis* 
+This a repo for Niche analysis for *S. rubricalis* 
