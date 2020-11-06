@@ -1,4 +1,3 @@
-
 ######################
 ## Clean
 ######################
@@ -10,28 +9,28 @@ library(ntbox)
 
 ###### Read 
 
-s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/inputs_ntbox/spLink_gbif_ntbox.csv", sep = "\t", dec = ".")
+s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/New/CSV/S_rubricaulis.csv", sep = ",", dec = ".")
+
 #S_brasilensis_2 <- read.csv (__________________)
 
 #### data clean via "clean_dup" of ntbox
 
-s_rubricaulis_data_clean <- clean_dup(s_brasiliensi, longitude= "longitude", latitude = "latitude", threshold = 0.1)
+s_rubricaulis_data_clean <- clean_dup(s_brasiliensi, longitude= "longitude", latitude = "latitude", threshold = 0.035)
 
-
-write.csv(s_rubricaulis_data_clean, "./dados/Syzygiella_rubricaulis/records/data_clean/ntbox/s_rubricaulis_clean.csv", sep = "\t", dec = .)
+write.csv(s_rubricaulis_data_clean, "./dados/Syzygiella_rubricaulis/records/New/Data_Clean/s_rubricaulis_clean_ntbox_0035.csv", sep = ",", dec =".")
 
 
 ### data clean via setupd_sdmdata of modleR
-predictors_list <- list.files("/home/taina/Documentos/Worldclim/RAW_current_21v_10km/wc2.1_5m_bio/", full.names = T, pattern = ".tif")
+predictors_list <- list.files("./dados/Syzygiella_rubricaulis/envs/", full.names = T, pattern = ".tif")
 
 predictors <- stack(predictors_list)
 
 sdmdata_s_brasiliense <- setup_sdmdata(species_name = unique(s_brasiliensi[2]),
                              occurrences = s_brasiliensi[3:4],
-                             lon = "long",
-                             lat = "lat",
+                             lon = "longitude",
+                             lat = "latitude",
                              predictors = predictors,
-                             models_dir = "data_clean",
+                             models_dir = "data_clean_modleR",
                              partition_type = "crossvalidation",
                              cv_partitions = 1,
                              cv_n = 1,

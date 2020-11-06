@@ -40,22 +40,19 @@ Shape_SA_AZ <- readOGR("./dados/Syzygiella_rubricaulis/Shapes/Recorte_Netropical
 plot(Shape_SA_AZ)
 
 
-### Mask Crop  Solar Radiation
-sr_masked <- mask(x = Mean_Solar_Radiation, mask = Shape_SA_AZ) #aplicando a máscara (shape) pela função mask do pacote raster 
-plot(sr_masked) # plote 
+List_all <- list.files("/home/taina/Documentos/Worldclim/wc2.1_5m_bio/", pattern = ".tif", full.names = T)
 
-sr_cropped <- crop(x = sr_masked, y = extent(Shape_SA_AZ)) #agora corte por essa máscara
-plot(sr_cropped)
-
-writeRaster(sr_cropped, "./dados/Syzygiella_rubricaulis/envs/solar_radiation.tif") ### Isto vai salvar no local em que estiver o projeto. Veja este local no canto superior  direito 
-
-
+Stack_all <- stack(List_all)
+plot(Stack_all)
 
 ### Mask Crop  Solar Radiation
-wvp_masked <- mask(x = Mean_Water_Vapor, mask = Shape_SA_AZ) #aplicando a máscara (shape) pela função mask do pacote raster 
-plot(wvp_masked) # plote 
+all_masked <- mask(x = Stack_all, mask = Shape_SA_AZ) #aplicando a máscara (shape) pela função mask do pacote raster 
+plot(all_masked) # plote 
 
-wvp_cropped <- crop(x = wvp_masked, y = extent(Shape_SA_AZ)) #agora corte por essa máscara
-plot(wvp_cropped)
+all_cropped <- crop(x = all_masked, y = extent(Shape_SA_AZ)) #agora corte por essa máscara
+plot(all_cropped)
 
-writeRaster(wvp_cropped, "./dados/Syzygiella_rubricaulis/envs/water_vapor_pressure.tif") ### Isto vai salvar no local em que estiver o projeto. Veja este local no canto superior  direito 
+a <- paste0(names(all_cropped), ".tif")
+
+writeRaster(all_cropped, filename= a, bylayer=TRUE) ### Isto vai salvar no local em que estiver o projeto. Veja este local no canto superior  direito 
+
