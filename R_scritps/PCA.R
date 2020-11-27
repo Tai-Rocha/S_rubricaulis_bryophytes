@@ -14,7 +14,7 @@ library(spatstat)
 
 ## Pedra Bonita e Gávea
 
-list_records <- read.csv("./dados/Syzygiella_rubricaulis/records/New/Data_Clean/Final_DataClean_Sdmatdata_Ntbox.csv", sep = ",")
+list_records <- read.csv("./dados/Syzygiella_rubricaulis/records/New/Data_Clean/Old/Final_DataClean_Sdmatdata_Ntbox.csv", sep = ",")
 
 
 ## PCA
@@ -39,7 +39,7 @@ fviz_pca_ind(rubricaulis.pca,
 ## Vizualize Image
 
 tiff(file="PCA_rubricaulis.tiff",
-     width=9, height=7, units="in", res=150)
+     width=12, height=10, units="in", res=150)
 fviz_pca_biplot(rubricaulis.pca, 
                 axes = c(1, 2), 
                 geom = c("point", "text"), 

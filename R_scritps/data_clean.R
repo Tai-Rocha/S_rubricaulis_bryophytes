@@ -17,7 +17,7 @@ s_brasiliensi <- read.csv("./dados/Syzygiella_rubricaulis/records/New/CSV/S_rubr
 
 s_rubricaulis_data_clean <- clean_dup(s_brasiliensi, longitude= "longitude", latitude = "latitude", threshold = 0.035)
 
-write.csv(s_rubricaulis_data_clean, "./dados/Syzygiella_rubricaulis/records/New/Data_Clean/s_rubricaulis_clean_ntbox_0035.csv", sep = ",", dec =".")
+write.csv(s_rubricaulis_data_clean, "./dados/Syzygiella_rubricaulis/records/New/Data_Clean/s_rubricaulis_clean_ntbox_0035_final.csv", sep = ",", dec =".")
 
 
 ### data clean via setupd_sdmdata of modleR
@@ -37,11 +37,11 @@ sdmdata_s_brasiliense <- setup_sdmdata(species_name = unique(s_brasiliensi[2]),
                              seed = 512,
                              buffer_type = "mean",
                              png_sdmdata = TRUE,
-                             n_back = 1,
+                             n_back = 0,
                              clean_dupl = T,
                              clean_uni = T,
                              clean_nas = T,
                              select_variables = F,
                              sample_proportion = 0.5,
                              cutoff = 0.7)
-
+########## END
