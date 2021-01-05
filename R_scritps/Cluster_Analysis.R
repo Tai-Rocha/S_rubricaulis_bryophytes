@@ -1,7 +1,10 @@
-#######################
+##################################################################################################
+
 ## Cluster analysis
 ## Author: Tainá Rocha
-########################
+## pvclust provides two types of p-values: AU (Approximately Unbiased) p-value and BP (Bootstrap Probability) value. AU p-value, which is computed by multiscale bootstrap resampling, is a better approximation to unbiased p-value than BP value computed by normal bootstrap resampling.
+
+##################################################################################################
 
 
 #### Library
@@ -12,11 +15,11 @@ library(ape)
 library(dendextend)
 
 
-input_kmeans <- read.csv("./dados/Syzygiella_rubricaulis/pvclust/pvclust_input_country.csv")
+input_kmeans <- read.csv("./S_rubricaulis_bryophytes_old/dados/Syzygiella_rubricaulis/pvclust/Final_DataClean_Sdmatdata_Ntbox_Cluster.csv")
 
 ###################### PVClust
 
-clusterr <- pvclust(input_kmeans[,-1], method.hclust="average",
+clusterr <- pvclust(input_kmeans[1:21,-1], method.hclust="average",
         method.dist="euclidean", use.cor="pairwise.complete.obs",
         nboot=1000, parallel=FALSE, r=seq(.5,1.4,by=.1),
         store=FALSE, weight=T, iseed=NULL, quiet=FALSE)

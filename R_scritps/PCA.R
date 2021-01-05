@@ -64,7 +64,7 @@ dev.off()
 
 # Dimension 1
 
-tiff(file="dim1_varContrib_gavbon.tiff",
+tiff(file="dim1.tiff",
      width=9, height=7, units="in", res=150)
 fviz_contrib(rubricaulis.pca, choice="var", axes = 1, sort.val = "asc", fill = "gray")
 dev.off()
@@ -72,7 +72,7 @@ dev.off()
 
 # Dimension 2
 
-tiff(file="dim2_varContrib_gavbon.tiff",
+tiff(file="dim2.tiff",
      width=9, height=7, units="in", res=150)
 fviz_contrib(rubricaulis.pca, choice="var", axes = 2, sort.val = "asc", fill = "gray")
 dev.off()
