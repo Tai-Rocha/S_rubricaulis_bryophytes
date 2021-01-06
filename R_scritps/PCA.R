@@ -14,11 +14,11 @@ library(spatstat)
 
 ## Pedra Bonita e Gávea
 
-list_records <- read.csv("./dados/Syzygiella_rubricaulis/records/New/Data_Clean/Old/Final_DataClean_Sdmatdata_Ntbox.csv", sep = ",")
+list_records <- read.csv("./S_rubricaulis_bryophytes_old/dados/Syzygiella_rubricaulis/PCA/Final_DataClean_Sdmatdata_Ntbox_PCA.csv", sep = ",")
 
 
 ## PCA
-rubricaulis.pca <- prcomp(list_records[6:26],  scale = TRUE)
+rubricaulis.pca <- prcomp(list_records[,6:26],  scale = TRUE)
 
   fviz_pca_ind(rubricaulis.pca,
                label = "none",

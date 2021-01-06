@@ -14,13 +14,13 @@ library(erer)
 
 ## Read and Load data after clean (table of lat long)
 
-s_rubricaulis <- read.csv("./dados/Syzygiella_rubricaulis/records/data_clean/ntbox/s_rubricaulis_map_k_means.csv", sep = ",", dec = ".")
+s_rubricaulis <- read.csv("./Clean_data/Final_DataClean_Sdmatdata_Ntbox.csv", sep = ",", dec = ".")
 
 #rm(s_rubricaulis)
 
 ## Read and load envs data (all raster)
 
-predictors_list <- list.files("./dados/Syzygiella_rubricaulis/envs/", full.names = T, pattern = ".tif")
+predictors_list <- list.files("./S_rubricaulis_bryophytes_old/dados/Syzygiella_rubricaulis/envs/", full.names = T, pattern = ".tif")
 
 predictors <- stack(predictors_list)
 
@@ -33,14 +33,14 @@ plot(predictors)
 ### Extract envs values from points using ratser pckg
 
 envs_values_in_points <- raster::extract(predictors,
-                                         s_rubricaulis[,c("longitude","latitude")],method="bilinear")
+                                         s_rubricaulis[4:5],method="bilinear")
 
 ## NA remove
 envs_values_in_points_2 <- na.omit(envs_values_in_points)
 
 ## Write the table of env values in lat long
 
-write.csv(envs_values_in_points,"./dados/Syzygiella_rubricaulis/envs/envs_valus_point_bilinear_all.csv", sep = ",", dec = ".")
+write.csv(envs_values_in_points,"./Clean_data/climatic_elevation.csv", sep = ",", dec = ".")
 
 write.csv(envs_values_in_points_2,"./dados/Syzygiella_rubricaulis/envs/envs_valus_point_bilinear_NO_NA.csv", sep = ",", dec = ".")
 
