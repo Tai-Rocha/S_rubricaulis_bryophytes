@@ -22,20 +22,20 @@ list_records <- read.csv("./Clean_data/climatic_elevation_final.csv", sep = ",")
 ## PCA
 rubricaulis.pca <- prcomp(list_records[,5:25],  scale = TRUE)
 
-  fviz_pca_ind(rubricaulis.pca,
-               label = "none",
-               habillage= list_records$Country,
-               geom = "point",
-               col.var = "coord")
+#fviz_pca_ind(rubricaulis.pca,
+#               label = "none",
+#               habillage= list_records$Country,
+#               geom = "point",
+#               col.var = "coord")
   
   
-fviz_pca_ind(rubricaulis.pca, 
-                    label="none", 
-                    geom = c("point", "text"),
-                    geom.ind = c("point", "text"),
-                    habillage=list_records$Country,
-                    addEllipses=TRUE, 
-                    ellipse.level=0.90)
+#fviz_pca_ind(rubricaulis.pca, 
+#                   label="none", 
+#                    geom = c("point", "text"),
+#                    geom.ind = c("point", "text"),
+#                   habillage=list_records$Country,
+#                    addEllipses=TRUE, 
+#                    ellipse.level=0.90)
 
 
 ## Vizualize Image
@@ -87,11 +87,13 @@ get_engivalues
 
 # Results for Variables
 res.var <- get_pca_var(rubricaulis.pca)
+res.var
+
 res.var$coord          # Coordinates
 res.var$contrib        # Contributions to the PCs
 res.var$cos2           # Quality of representation 
 # Results for individuals
-res.ind <- get_pca_ind(res.pca)
+res.ind <- get_pca_ind(rubricaulis.pca)
 res.ind$coord          # Coordinates
 res.ind$contrib        # Contributions to the PCs
 res.ind$cos2           # Quality of representation 
@@ -102,4 +104,17 @@ tiff(file="Loadings_rubricaulis.tiff",
 fviz_eig(rubricaulis.pca)
 dev.off()
 
+################################################################## To fix
 
+# Centering and scaling the supplementary individuals 
+ind.scaled <- scale(ind.sup, 
+                    center = res.pca$center,
+                    scale = res.pca$scale)
+# Coordinates of the individividuals
+coord_func <- function(ind, loadings){
+  r <- loadings*ind
+  apply(r, 2, sum)
+}
+pca.loadings <- res.pca$rotation
+ind.sup.coord <- t(apply(ind.scaled, 1, coord_func, pca.loadings ))
+ind.sup.coord[, 1:4]
