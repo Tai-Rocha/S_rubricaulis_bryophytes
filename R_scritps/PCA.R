@@ -20,7 +20,7 @@ list_records <- read.csv("./Clean_data/climatic_elevation_final.csv", sep = ",")
 
 
 ## PCA
-rubricaulis.pca <- prcomp(list_records[,4:25],  scale = TRUE)
+rubricaulis.pca <- prcomp(list_records[,5:25],  scale = TRUE)
 
   fviz_pca_ind(rubricaulis.pca,
                label = "none",
@@ -80,6 +80,22 @@ fviz_contrib(rubricaulis.pca, choice="var", axes = 2, sort.val = "asc", fill = "
 dev.off()
 
 
+## Eingvalues
+
+get_engivalues <- get_eigenvalue(rubricaulis.pca)
+get_engivalues
+
+# Results for Variables
+res.var <- get_pca_var(rubricaulis.pca)
+res.var$coord          # Coordinates
+res.var$contrib        # Contributions to the PCs
+res.var$cos2           # Quality of representation 
+# Results for individuals
+res.ind <- get_pca_ind(res.pca)
+res.ind$coord          # Coordinates
+res.ind$contrib        # Contributions to the PCs
+res.ind$cos2           # Quality of representation 
+  
 ## loadings
 tiff(file="Loadings_rubricaulis.tiff",
      width=12, height=10, units="in", res=150)
