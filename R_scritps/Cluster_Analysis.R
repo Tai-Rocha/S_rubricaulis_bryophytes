@@ -15,11 +15,11 @@ library(ape)
 library(dendextend)
 
 
-input_kmeans <- read.csv("./S_rubricaulis_bryophytes_old/dados/Syzygiella_rubricaulis/pvclust/pvclust_final.csv")
+input_kmeans <- read.csv("./Clean_data/teste_pvclust.csv")
 
 ###################### PVClust
 
-clusterr <- pvclust(input_kmeans[1:22,-1], method.hclust="average",
+clusterr <- pvclust(input_kmeans[,-1], method.hclust="average",
         method.dist="euclidean", use.cor="pairwise.complete.obs",
         nboot=1000, parallel=FALSE, r=seq(.5,1.4,by=.1),
         store=FALSE, weight=T, iseed=NULL, quiet=FALSE)
