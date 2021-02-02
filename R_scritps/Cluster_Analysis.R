@@ -15,7 +15,8 @@ library(ape)
 library(dendextend)
 
 
-input_kmeans <- read.csv("./Clean_data/teste_2.csv")
+#input_kmeans <- read.csv("./Clean_data/teste_2.csv")
+input_kmeans <- read.csv("./Clean_data/no_correlatiuon_our_choose.csv")
 
 ###################### PVClust
 
@@ -26,7 +27,7 @@ cluster <- pvclust(input_kmeans[,-1], method.hclust="average",
 
 tiff(file="Cluster.tiff",
      width=15, height=12, units="in", res=150)
-plot(cluster, print.pv="au", print.num=FALSE, float=0.01,
+plot(cluster, print.pv=c("au","bp"), print.num=FALSE, float=0.01,
      col.pv=c(si=4, au=2, bp=3, edge=8), cex.pv=0.4, font.pv=0.1,
      col=NULL, cex=0.6, font=NULL, lty=NULL, lwd=NULL, main=NULL,
      sub=NULL, xlab=NULL)
