@@ -7,7 +7,10 @@
 ## To build the cluster we take into account the correlation with all variables and their importance in previous principal component analysis (PCA). Thus, we select only variables important to our dataset with no collinearity. The variables are : 
 
 # Water Vapor pressure
-
+# Anual Precippitaltions (bio12)
+# Temperature annual range (bio7)
+# Precipitation Seasonality (bio15)
+# Precipitation of Coldest Quarter (bio19)
 ##################################################################################################
 
 
@@ -20,7 +23,8 @@ library(dendextend)
 
 
 #input_kmeans <- read.csv("./Clean_data/teste_2.csv")
-input_kmeans <- read.csv("./Clean_data/no_correlatiuon_our_choose.csv")
+
+input_kmeans <- read.csv("./Clean_data/final_set_pvclust_5vars.csv")
 
 ###################### PVClust
 
@@ -31,23 +35,10 @@ cluster <- pvclust(input_kmeans[,-1], method.hclust="average",
 
 tiff(file="Cluster.tiff",
      width=15, height=12, units="in", res=150)
-plot(cluster, print.pv=c("au","bp"), print.num=FALSE, float=0.01,
+plot(cluster, print.pv="au", print.num=FALSE, float=0.01,
      col.pv=c(si=4, au=2, bp=3, edge=8), cex.pv=0.4, font.pv=0.1,
      col=NULL, cex=0.6, font=NULL, lty=NULL, lwd=NULL, main=NULL,
      sub=NULL, xlab=NULL)
 dev.off()
 
-plot(clusterr,hang = -1, cex = 0.6, max.only=T, )
-
-########## 
-
-pvrect(clusterr, alpha=0.90)
-
-
-parPvclust(cl=NULL, clusterr, method.hclust="average",
-           method.dist="correlation", use.cor="pairwise.complete.obs",
-           nboot=100, r=seq(.5,1.4,by=.1), store=FALSE, weight=FALSE,
-           init.rand=NULL, iseed=NULL, quiet=FALSE)
-
-
-################## ENd
+################### End
