@@ -4,6 +4,10 @@
 ## Author: Tainá Rocha
 ## pvclust provides two types of p-values: AU (Approximately Unbiased) p-value and BP (Bootstrap Probability) value. AU p-value, which is computed by multiscale bootstrap resampling, is a better approximation to unbiased p-value than BP value computed by normal bootstrap resampling.
 
+## To build the cluster we take into account the correlation with all variables and their importance in previous principal component analysis (PCA). Thus, we select only variables important to our dataset with no collinearity. The variables are : 
+
+# Water Vapor pressure
+
 ##################################################################################################
 
 
