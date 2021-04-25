@@ -12,16 +12,15 @@ library(factoextra)
 library(vegan)
 library(spatstat)
 
-## Pedra Bonita e Gávea
-
 #list_records <- read.csv("./S_rubricaulis_bryophytes_old/dados/Syzygiella_rubricaulis/PCA/Final_DataClean_Sdmatdata_Ntbox_PCA.csv", sep = ",")
 
-list_records <- read.csv("./Clean_data/climatic_elevation_final.csv", sep = ",")
+list_records <- read.csv("./Clean_data/Final_DataClean_Sdmatdata_Ntbox (cópia 1).csv", sep = ",")
 
 
 ## PCA
-rubricaulis.pca <- prcomp(list_records[,5:25],  scale = TRUE)
+rubricaulis.pca <- prcomp(list_records[,6:26],  scale = TRUE)
 
+#rm(rubricaulis.pca)
 #fviz_pca_ind(rubricaulis.pca,
 #               label = "none",
 #               habillage= list_records$Country,
@@ -55,8 +54,8 @@ fviz_pca_biplot(rubricaulis.pca,
                 label = "all", 
                 invisible = "none", 
                 repel = FALSE, 
-                habillage = list_records$Country, 
-                palette = NULL, 
+                habillage = list_records$K_means, 
+                palette =  c("#52b337", "#000000", "#FF1234"), 
                 addEllipses = FALSE, 
                 title = "PCA")
 dev.off()
