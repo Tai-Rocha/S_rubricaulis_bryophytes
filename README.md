@@ -1,2 +1,2 @@
 ##### 
-This a repo for environmental niche analysis for *Syzygiella rubricaulis* 
+Repo for environmental niche analysis for *Syzygiella rubricaulis* 
