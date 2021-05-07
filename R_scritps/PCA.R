@@ -39,8 +39,8 @@ rubricaulis.pca <- prcomp(list_records[,6:26],  scale = TRUE)
 
 ## Vizualize Image
 
-tiff(file="PCA_rubricaulis.tiff",
-     width=12, height=10, units="in", res=150)
+png(file="PCA_rubricaulis.png",
+     width=12, height=10, units="in", res=300)
 fviz_pca_biplot(rubricaulis.pca, 
                 axes = c(1, 2), 
                 geom = c("point", "text"), 
@@ -48,7 +48,7 @@ fviz_pca_biplot(rubricaulis.pca,
                 geom.var = c("arrow", "text"), 
                 col.ind = "black", 
                 fill.ind = "gray", 
-                col.var = "gray", 
+                col.var = "dark gray", 
                 fill.var = "white", 
                 gradient.cols = NULL, 
                 label = "all", 
@@ -57,7 +57,7 @@ fviz_pca_biplot(rubricaulis.pca,
                 habillage = list_records$K_means, 
                 palette =  c("#52b337", "#000000", "#FF1234"), 
                 addEllipses = FALSE, 
-                title = "PCA")
+                title = " ")
 dev.off()
 
 
